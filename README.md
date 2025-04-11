@@ -1,3 +1,5 @@
+[![Visitors](https://visitor-badge.laobi.icu/badge?page_id=Mysteriza.Linux-Mint-Scripts)](https://github.com/Mysteriza/Linux-Mint-Scripts)
+
 # CUSTOM SCRIPTS
 
 Custom Linux Mint scripts for personal use on some of the available features of the [Lenovo Ideapad Slim 3](https://psref.lenovo.com/syspool/Sys/PDF/IdeaPad/IdeaPad_3_14ARE05/IdeaPad_3_14ARE05_Spec.PDF).
@@ -70,3 +72,19 @@ Install them via:
 
 ```bash
 sudo apt install zenity cpufrequtils policykit-1
+```
+
+## How to run
+```
+git clone https://github.com/Mysteriza/Linux-Mint-Scripts.git && cd Linux-Mint-Scripts
+```
+Make the script executable:
+```
+chmod +x ./script-name.sh
+```
+Replace script-name.sh with the actual script you want to run.
+
+Run the script:
+```
+./script-name.sh
+```
