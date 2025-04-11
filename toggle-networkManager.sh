@@ -2,22 +2,23 @@
 
 status=$(systemctl is-active NetworkManager)
 if [ "$status" == "active" ]; then
-  status="AKTIF"
+  status="ACTIVE"
 else
-  status="TIDAK AKTIF"
+  status="INACTIVE"
 fi
 
+# Show action dialog
 action=$(zenity --list \
   --title="Restart NetworkManager" \
   --width=500 --height=200 \
-  --text="Status NetworkManager saat ini: $status\n\nPilih tindakan:" \
+  --text="Current NetworkManager status: $status\n\nSelect an action:" \
   --radiolist \
-  --column="Pilih" --column="Aksi" \
-  TRUE "Stop dan Restart NetworkManager (Kembali Normal)")
+  --column="Select" --column="Action" \
+  TRUE "Stop and Restart NetworkManager (Back to Normal)")
 
-if [ "$action" == "Stop dan Restart NetworkManager (Kembali Normal)" ]; then
+if [ "$action" == "Stop and Restart NetworkManager (Back to Normal)" ]; then
   pkexec bash -c "systemctl stop NetworkManager && sleep 1 && systemctl start NetworkManager"
-  zenity --info --title="NetworkManager" --text="NetworkManager berhasil dihentikan dan dijalankan kembali."
+  zenity --info --title="NetworkManager" --text="NetworkManager has been successfully restarted."
 else
-  zenity --warning --text="Tidak ada tindakan yang dipilih."
+  zenity --warning --text="No action selected."
 fi
