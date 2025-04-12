@@ -10,7 +10,7 @@ fi
 current_mode=$(cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode)
 
 if [[ "$current_mode" == "1" ]]; then
-    status_text="Current mode: Charging is limited (max 60%)"
+    status_text="Current mode: Conservation Mode (max 60%)"
 else
     status_text="Current mode: Charging to full (max 100%)"
 fi
@@ -21,12 +21,12 @@ choice=$(zenity --list \
   --text="$status_text\n\nSelect your preferred battery charging mode:" \
   --radiolist \
   --column="Select" --column="Mode" \
-  TRUE "Limit charging to (max 60%)" \
+  TRUE "Conservation Mode (max 60%)" \
   FALSE "Charge fully to (max 100%)" \
   --width=450 --height=250)
 
 # Apply selected option
-if [[ "$choice" == "Limit charging to (max 60%)" ]]; then
+if [[ "$choice" == "Conservation Mode (max 60%)" ]]; then
     pkexec bash -c "echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
     zenity --info --text="Charging will now be limited to about 60%."
 elif [[ "$choice" == "Charge fully to (max 100%)" ]]; then
