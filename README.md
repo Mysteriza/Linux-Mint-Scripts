@@ -86,18 +86,34 @@ This tool eliminates the need to manually edit `.desktop` files or rely on termi
 
 ---
 
+## 7. Proxy Tester
+<img src="https://github.com/user-attachments/assets/82f860f7-5c10-4e6e-92fe-933694453b02" width="450"/>
+
+This script tests SOCKS5 proxies listed in `/etc/proxychains4.conf`:
+
+- Checks if each proxy is **active** or **dead**
+- Fetches geolocation (country, city, ISP) using `ip-api.com`
+- Measures latency to identify the fastest proxy
+- Displays results in a clean, colored, line-based format
+
+Perfect for verifying proxy performance and reliability for privacy-focused tasks. Requires `proxychains4` and `jq` for JSON parsing.
+
+---
+
 ## Requirements
 
 Ensure the following packages are installed:
 
-- `zenity` — for displaying GUI dialogs
+- `zenity` — for displaying GUI dialogs (used in some scripts)
 - `cpufrequtils` — for setting CPU governor
 - `pkexec` — to perform actions with elevated privileges (usually provided by `policykit-1`)
+- `proxychains4` — for proxy testing (required for Proxy Tester)
+- `jq` — for JSON parsing (required for Proxy Tester)
 
 Install them via:
 
 ```bash
-sudo apt install zenity cpufrequtils policykit-1
+sudo apt install zenity cpufrequtils policykit-1 proxychains4 jq
 ```
 
 ## How to run
