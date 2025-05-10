@@ -1,20 +1,21 @@
 #!/bin/bash
 
 translate_status() {
-  if [[ "$1" == "enabled" ]]; then echo "ENABLED"; else echo "DISABLED"; fi
+  if [[ "$1" == "active" ]]; then echo "ENABLED"; else echo "DISABLED"; fi
 }
 
-status_mariadb_raw=$(systemctl is-enabled mariadb 2>/dev/null)
+# Use 'active' status instead of 'enabled'
+status_mariadb_raw=$(systemctl is-active mariadb 2>/dev/null)
 status_mariadb=$(translate_status "$status_mariadb_raw")
 
 # Detect available web server (Apache or Nginx)
 if systemctl list-unit-files | grep -q "^apache2.service"; then
   web_service="apache2"
-  status_phpmyadmin_raw=$(systemctl is-enabled apache2 2>/dev/null)
+  status_phpmyadmin_raw=$(systemctl is-active apache2 2>/dev/null)
   status_phpmyadmin=$(translate_status "$status_phpmyadmin_raw")
 elif systemctl list-unit-files | grep -q "^nginx.service"; then
   web_service="nginx"
-  status_phpmyadmin_raw=$(systemctl is-enabled nginx 2>/dev/null)
+  status_phpmyadmin_raw=$(systemctl is-active nginx 2>/dev/null)
   status_phpmyadmin=$(translate_status "$status_phpmyadmin_raw")
 else
   zenity --error --text="No web server found (apache2/nginx). phpMyAdmin cannot be managed."
