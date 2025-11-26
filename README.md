@@ -100,6 +100,16 @@ Perfect for verifying proxy performance and reliability for privacy-focused task
 
 ---
 
+---
+
+## 8. Honeygain Checker
+
+This script checks the local Honeygain client and reports its operational status and basic account metrics:
+
+- Detects whether the Honeygain client/service/process is running and whether it is connected
+
+---
+
 ## Requirements
 
 Ensure the following packages are installed:
