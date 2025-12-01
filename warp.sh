@@ -11,8 +11,8 @@ while :; do
 
   CHOICE=$(zenity --list --hide-header --width=350 --height=200 \
     --title="Cloudflare WARP" \
-    --text="$TXT\n\nPilih aksi:" \
-    --column="Aksi" \
+    --text="$TXT\n\nChoose Action:" \
+    --column="Action" \
     "🟢 Connect WARP" \
     "🔴 Disconnect WARP" \
     "🚪 Exit")
